@@ -1,4 +1,4 @@
-require "customer_record_builder"
+require_relative "customer_record_builder"
 
 class DataRetriever
 
@@ -26,5 +26,13 @@ class DataRetriever
   def sort_by_last_name_descending
     sort_by_last_name_ascending.reverse
   end
+end
 
+if __FILE__ == $0
+  file = ARGV.first
+  data_retriever = DataRetriever.new(file)
+  File.open('gender.csv', 'w') { |f| f.write(data_retriever.sort_by_gender) }
+  File.open('last_name_asc.csv', 'w') { |f| f.write(data_retriever.sort_by_last_name_ascending) }
+  File.open('dob.csv', 'w') { |f| f.write(data_retriever.sort_by_dob_ascending) }
+  File.open('last_name_desc.csv', 'w') { |f| f.write(data_retriever.sort_by_last_name_descending) }
 end

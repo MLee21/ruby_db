@@ -1,4 +1,5 @@
-require 'file_handler'
+require_relative 'file_handler'
+require_relative 'customer_profile'
 
 class CustomerRecordBuilder
 
