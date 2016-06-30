@@ -1,6 +1,6 @@
 require 'csv'
 
-class FileReader
+class FileHandler
 
   attr_accessor :file, :csv
 

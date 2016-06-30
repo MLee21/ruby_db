@@ -1,5 +1,5 @@
 require "customer_profile"
-require "file_reader"
+require "file_handler"
 
 describe CustomerProfile do 
 
