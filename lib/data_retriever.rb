@@ -1,4 +1,5 @@
 require_relative "customer_record_builder"
+require 'json'
 
 class DataRetriever
 
@@ -26,13 +27,18 @@ class DataRetriever
   def sort_by_last_name_descending
     sort_by_last_name_ascending.reverse
   end
+
+  def convert_to_json(data)
+    data.map { |record| JSON.dump({ :date_of_birth => record.date_of_birth, :favorite_color => record.favorite_color, :first_name => record.first_name, :gender => record.gender, :id => record.id, :last_name => record.last_name }) }
+  end
 end
 
 if __FILE__ == $0
   file = ARGV.first
   data_retriever = DataRetriever.new(file)
-  File.open('gender.csv', 'w') { |f| f.write(data_retriever.sort_by_gender) }
-  File.open('last_name_asc.csv', 'w') { |f| f.write(data_retriever.sort_by_last_name_ascending) }
-  File.open('dob.csv', 'w') { |f| f.write(data_retriever.sort_by_dob_ascending) }
-  File.open('last_name_desc.csv', 'w') { |f| f.write(data_retriever.sort_by_last_name_descending) }
+  File.open('all.txt', 'w') { |f| f.write(data_retriever.convert_to_json(data_retriever.all)) }
+  File.open('gender.txt', 'w') { |f| f.write(data_retriever.convert_to_json(data_retriever.sort_by_gender)) }
+  File.open('last_name_asc.txt', 'w') { |f| f.write(data_retriever.convert_to_json(data_retriever.sort_by_last_name_ascending)) }
+  File.open('dob.txt', 'w') { |f| f.write(data_retriever.convert_to_json(data_retriever.sort_by_dob_ascending)) }
+  File.open('last_name_desc.txt', 'w') { |f| f.write(data_retriever.convert_to_json(data_retriever.sort_by_last_name_descending)) }
 end

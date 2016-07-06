@@ -22,7 +22,7 @@ class CustomerProfile
 
   def delimiter_splitter(data)
     if data.include?(",")
-      data.split(",") 
+      data.split(",")
     else
       data.split("|")
     end

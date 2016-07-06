@@ -32,6 +32,12 @@ describe DataRetriever do
         expect(@data_retriever.sort_by_last_name_descending.first.last_name).to eq("Williams")
         expect(@data_retriever.sort_by_last_name_descending.last.last_name).to eq("Alvarez")
       end
+
+      it "should convert objects to json" do 
+        expect(@data_retriever.all.first.class).to eq(CustomerProfile)
+        jsonified_object = @data_retriever.convert_to_json(@data_retriever.all)
+        expect(jsonified_object.first).to eq("{\"date_of_birth\":\"07/24/1987\",\"favorite_color\":\"Khaki\",\"first_name\":\"Andrew\",\"gender\":\"Male\",\"id\":1,\"last_name\":\"Matthews\"}")
+      end
     end
   end
 end
