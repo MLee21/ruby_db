@@ -3,13 +3,13 @@ This is a system that takes an input of two formats within a file: comma-delimit
 * Output 2 – sorted by birth date, ascending.
 * Output 3 – sorted by last name, descending.
 
-After cloning down, the repo:
+After cloning down the repo:
 
 * run 'bundle'
 
 To run the tests:
 
-* run rspec
+* run 'rspec'
 
 To "populate the fake db":
 
